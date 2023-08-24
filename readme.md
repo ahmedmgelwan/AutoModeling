@@ -53,9 +53,7 @@ Check out the example notebooks for regression and classification tasks using Au
 
 ## Contributing
 
-License
-This project is licensed under the MIT License - see the LICENSE file for details.License
-This project is licensed under the MIT License - see the LICENSE file for details.Contributions are welcome!
+Contributions are welcome!
 
 ------
 
