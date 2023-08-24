@@ -71,7 +71,7 @@ class ClassificationModels:
         self.best_model = self.best_models[best_model_index]
         return self.best_model
     
-    def predict(self,X_test):
+    def predict(self):
         if self.best_model:
             pred = self.best_model.predict(self.X_test)
         return pred
