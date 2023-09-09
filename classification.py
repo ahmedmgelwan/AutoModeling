@@ -62,12 +62,20 @@ class ClassificationModels:
         recall = recall_score(self.y_test, y_pred)
         f1 = f1_score(self.y_test, y_pred)
         model_name = model.__class__.__name__
-        self.scores = self.scores.append({'Model': model_name ,'Precision': precision, 'Recall': recall, 'F1-Score': f1}, ignore_index=True)
+        self.scores = pd.concat([self.scores, pd.DataFrame([{'Model': model_name ,'Precision': precision, 'Recall': recall, 'F1-Score': f1}])], ignore_index=True, axis=0)
         
-    
-    def get_best_model(self):
+    def best_model_index(self):
+        if len(self.scores) == 0 :
+            print('You Must First train models for your data\nTrain models and then extract the best one.')
+            return
         best_model_name = self.scores.loc[self.scores['F1-Score'].idxmax()]['Model']
         best_model_index = next((index for index, model in enumerate(self.models) if model.__class__.__name__ == best_model_name), None)
+        return best_model_index
+
+    def get_best_model(self):
+        best_model_index = self.best_model_index()
+        if best_model_index is None:
+            return
         self.best_model = self.best_models[best_model_index]
         return self.best_model
     

@@ -25,21 +25,23 @@ from AutoModeling.regression import RegressionModels
 from AutoModeling.classification import ClassificationModels
 
 
-# Load dataset
-data = pd.read_csv("your_dataset.csv")
-target_column = "target"
 
 # EDA
 eda_instance = EDA("your_dataset.csv")
 eda_instance.remove_outliers("numeric_column")
 
+# Exatract Data Frame
+data = eda_instance.df
+
 # Regression Modeling
 regression_model = RegressionModels(data, target_column)
+regression_model.model_building()
 best_regression_model = regression_model.get_best_model()
 regression_predictions = regression_model.predict()
 
 # Classification Modeling
 classification_model = ClassificationModels(data, target_column)
+classification_model.model_building()
 best_classification_model = classification_model.get_best_model()
 classification_predictions = classification_model.predict()
 ```
