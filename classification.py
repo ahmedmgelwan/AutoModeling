@@ -49,6 +49,8 @@ class ClassificationModels:
         ]
 
         for model, param_grid in zip(self.models, param_grids):
+            print(f'Trainig {model.__class__.__name__}.')
+
             grid_search = GridSearchCV(model, param_grid, cv=5)
             grid_search.fit(self.X_train, self.y_train)
             

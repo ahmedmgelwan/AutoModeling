@@ -10,7 +10,7 @@ Simplify your machine learning workflows with AutoModeling - an automated toolki
 
 ## Installation
 
-You can clone AutoModeling repo by:
+You can clone the AutoModeling repository by running the following command:
 
 ```bash
 git clone https://github.com/ahmedmgelwan/AutoModeling.git
@@ -18,19 +18,19 @@ git clone https://github.com/ahmedmgelwan/AutoModeling.git
 
 ## Usage
 
+### Using the Package
+
 ```python
 # Importing classes
 from AutoModeling.auto_eda import EDA
 from AutoModeling.regression import RegressionModels
 from AutoModeling.classification import ClassificationModels
 
-
-
 # EDA
 eda_instance = EDA("your_dataset.csv")
 eda_instance.remove_outliers("numeric_column")
 
-# Exatract Data Frame
+# Extract Data Frame
 data = eda_instance.df
 
 # Regression Modeling
@@ -44,7 +44,19 @@ classification_model = ClassificationModels(data, target_column)
 classification_model.model_building()
 best_classification_model = classification_model.get_best_model()
 classification_predictions = classification_model.predict()
+
+# Saving best model
+classification_model.save_best_model('file_name') # if your task is classification
 ```
+
+### Using the `main.py` Script
+
+AutoModeling now includes a convenient `main.py` script that simplifies the model-building process:
+
+1. Run `main.py`.
+2. Provide the data path, optionally remove outliers, and specify the target variable.
+3. The script will automatically determine whether it's a regression or classification task.
+4. It will build and evaluate models, display scores, and offer the option to save the best model.
 
 ## Example Notebooks
 

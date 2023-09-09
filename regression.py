@@ -54,12 +54,14 @@ class RegressionModels:
         ]
 
         for model, param_grid in zip(self.models, param_grids):
+            print(f'Trainig {model.__class__.__name__}.')
             grid_search = GridSearchCV(model, param_grid, cv=5)
             grid_search.fit(self.X_train, self.y_train)
             
             best_model = grid_search.best_estimator_
             self.best_models.append(best_model)
             model_scores = cross_val_score(best_model, self.X_train, self.y_train, cv=5)
+            print(f'{model.__class__.__name__} has trained in diffrent paramters and best parameters get these scores\n{model_scores}')
             self.model_evaluation(best_model, model_scores)
     
     def model_evaluation(self, model, scores):
