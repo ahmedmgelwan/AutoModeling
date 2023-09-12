@@ -14,6 +14,8 @@ warnings.filterwarnings('ignore')
 
 class RegressionModels:
     def __init__(self, data, target):
+        if data[target].isna().sum():
+            data[target].dropna(inplace=True)
         self.data = data
         self.features = data.drop(columns=target)
         self.target = data[target]
