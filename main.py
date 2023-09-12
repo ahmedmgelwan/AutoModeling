@@ -14,7 +14,7 @@ def main():
         rm_outliers = input('Do You Want to remove any other outliers? [Y/N] - ').lower()
     target = input('Target: ')
 
-    if df[target].dtype == 'object' or df[target].nunique() ==2:
+    if df[target].dtype == 'object' or df[target].nunique() <10:
         print('Your task is classification')
         models = ClassificationModels(df,target)
         models.model_building()
