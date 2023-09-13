@@ -62,9 +62,9 @@ class ClassificationModels:
         
     def evaluate_model(self, model):
         y_pred = model.predict(self.X_test)
-        precision = precision_score(self.y_test, y_pred)
-        recall = recall_score(self.y_test, y_pred)
-        f1 = f1_score(self.y_test, y_pred)
+        precision = precision_score(self.y_test, y_pred, average='macro')
+        recall = recall_score(self.y_test, y_pred, average='macro')
+        f1 = f1_score(self.y_test, y_pred, average='macro')
         model_name = model.__class__.__name__
         self.scores = pd.concat([self.scores, pd.DataFrame([{'Model': model_name ,'Precision': precision, 'Recall': recall, 'F1-Score': f1}])], ignore_index=True, axis=0)
         
